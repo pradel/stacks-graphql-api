@@ -1,0 +1,90 @@
+version: "3.7"
+services:
+  stacks-blockchain:
+    image: blockstack/stacks-blockchain:2.0.11.4.0
+    command: /bin/stacks-node start --config /src/stacks-node/Config.toml
+    ports:
+      - "20443:20443"
+      - "20444:20444"
+    volumes:
+      - ./stacks-node/persistent-data/stacks-blockchain:/root/stacks-node/data
+      - ./stacks-node/config:/src/stacks-node
+    networks:
+      - stacks-blockchain
+
+  stacks-blockchain-api:
+    image: blockstack/stacks-blockchain-api:0.71.2
+    environment:
+      NODE_ENV: production
+      PG_HOST: postgres
+      PG_PORT: 5432
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      PG_DATABASE: postgres
+      STACKS_CHAIN_ID: 0x00000001
+      V2_POX_MIN_AMOUNT_USTX: 90000000260
+      STACKS_CORE_EVENT_PORT: 3700
+      STACKS_CORE_EVENT_HOST: 0.0.0.0
+      STACKS_BLOCKCHAIN_API_PORT: 3999
+      STACKS_BLOCKCHAIN_API_HOST: 0.0.0.0
+      STACKS_BLOCKCHAIN_API_DB: pg
+      STACKS_CORE_RPC_HOST: stacks-blockchain
+      STACKS_CORE_RPC_PORT: 20443
+    ports:
+      - "3700:3700"
+      - "3999:3999"
+    networks:
+      - stacks-blockchain
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:12.7
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./stacks-node/persistent-data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PORT: 5432
+    networks:
+      - stacks-blockchain
+
+  redis:
+    image: "redis:5"
+    command: "redis-server --requirepass hello"
+    ports:
+      - "6379:6379"
+    networks:
+      - stacks-blockchain
+
+  graphql-engine:
+    image: hasura/graphql-engine:v2.0.10
+    ports:
+      - "8080:8080"
+    networks:
+      - stacks-blockchain
+    depends_on:
+      - "postgres"
+    restart: always
+    environment:
+      ## postgres database to store Hasura metadata
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      PG_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+
+volumes:
+  db_data:
+
+networks:
+  stacks-blockchain:
