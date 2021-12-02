@@ -1,0 +1,13 @@
+table:
+  name: stx_events
+  schema: public
+object_relationships:
+- name: block
+  using:
+    manual_configuration:
+      column_mapping:
+        block_height: block_height
+      insertion_order: null
+      remote_table:
+        name: blocks
+        schema: public
