@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   stacks-blockchain:
-    image: blockstack/stacks-blockchain:2.0.11.4.0
+    image: blockstack/stacks-blockchain:2.05.0.0.0
     command: /bin/stacks-node start --config /src/stacks-node/Config.toml
     ports:
       - "20443:20443"
