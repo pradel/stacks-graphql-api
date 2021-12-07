@@ -1,2 +1,3 @@
 - "!include public_blocks.yaml"
 - "!include public_stx_events.yaml"
+- "!include public_txs.yaml"
