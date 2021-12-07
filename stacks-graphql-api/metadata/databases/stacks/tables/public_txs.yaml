@@ -1,3 +1,52 @@
 table:
   name: txs
   schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - tx_id
+    - tx_index
+    - raw_result
+    - index_block_hash
+    - block_hash
+    - block_height
+    - parent_block_hash
+    - burn_block_time
+    - parent_burn_block_time
+    - type_id
+    - anchor_mode
+    - status
+    - canonical
+    - post_conditions
+    - nonce
+    - fee_rate
+    - sponsored
+    - sponsor_address
+    - sender_address
+    - origin_hash_mode
+    - event_count
+    - execution_cost_read_count
+    - execution_cost_read_length
+    - execution_cost_runtime
+    - execution_cost_write_count
+    - execution_cost_write_length
+    - raw_tx
+    - microblock_canonical
+    - microblock_sequence
+    - microblock_hash
+    - parent_index_block_hash
+    - token_transfer_recipient_address
+    - token_transfer_amount
+    - token_transfer_memo
+    - smart_contract_contract_id
+    - smart_contract_source_code
+    - contract_call_contract_id
+    - contract_call_function_name
+    - contract_call_function_args
+    - poison_microblock_header_1
+    - poison_microblock_header_2
+    - coinbase_payload
+    filter: {}
+    limit: 100
+  role: user

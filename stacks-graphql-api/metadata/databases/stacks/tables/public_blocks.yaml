@@ -11,3 +11,26 @@ array_relationships:
       remote_table:
         name: stx_events
         schema: public
+select_permissions:
+- permission:
+    columns:
+    - index_block_hash
+    - block_hash
+    - block_height
+    - burn_block_time
+    - burn_block_hash
+    - burn_block_height
+    - miner_txid
+    - parent_index_block_hash
+    - parent_block_hash
+    - parent_microblock_hash
+    - parent_microblock_sequence
+    - canonical
+    - execution_cost_read_count
+    - execution_cost_read_length
+    - execution_cost_runtime
+    - execution_cost_write_count
+    - execution_cost_write_length
+    filter: {}
+    limit: 100
+  role: user

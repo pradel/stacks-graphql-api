@@ -1,0 +1,21 @@
+table:
+  name: smart_contracts
+  schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - tx_id
+    - canonical
+    - contract_id
+    - block_height
+    - index_block_hash
+    - parent_index_block_hash
+    - microblock_hash
+    - microblock_sequence
+    - microblock_canonical
+    - source_code
+    - abi
+    filter: {}
+    limit: 100
+  role: user
