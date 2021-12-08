@@ -1,0 +1,3 @@
+table:
+  name: ft_events
+  schema: public

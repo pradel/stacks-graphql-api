@@ -1,0 +1,3 @@
+table:
+  name: nft_events
+  schema: public

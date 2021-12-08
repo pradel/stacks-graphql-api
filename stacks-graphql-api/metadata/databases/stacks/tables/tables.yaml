@@ -1,5 +1,7 @@
 - "!include public_blocks.yaml"
+- "!include public_ft_events.yaml"
 - "!include public_microblocks.yaml"
+- "!include public_nft_events.yaml"
 - "!include public_smart_contracts.yaml"
 - "!include public_stx_events.yaml"
 - "!include public_txs.yaml"

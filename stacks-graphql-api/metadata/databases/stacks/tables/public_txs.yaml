@@ -1,6 +1,53 @@
 table:
   name: txs
   schema: public
+object_relationships:
+- name: block
+  using:
+    manual_configuration:
+      column_mapping:
+        block_height: block_height
+      insertion_order: null
+      remote_table:
+        name: blocks
+        schema: public
+- name: contract_call
+  using:
+    manual_configuration:
+      column_mapping:
+        contract_call_contract_id: contract_id
+      insertion_order: null
+      remote_table:
+        name: smart_contracts
+        schema: public
+- name: smart_contract
+  using:
+    manual_configuration:
+      column_mapping:
+        smart_contract_contract_id: contract_id
+      insertion_order: null
+      remote_table:
+        name: smart_contracts
+        schema: public
+array_relationships:
+- name: ft_events
+  using:
+    manual_configuration:
+      column_mapping:
+        tx_id: tx_id
+      insertion_order: null
+      remote_table:
+        name: ft_events
+        schema: public
+- name: nft_events
+  using:
+    manual_configuration:
+      column_mapping:
+        tx_id: tx_id
+      insertion_order: null
+      remote_table:
+        name: nft_events
+        schema: public
 select_permissions:
 - permission:
     columns:
