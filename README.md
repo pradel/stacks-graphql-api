@@ -5,6 +5,8 @@
 
 </div>
 
+> 🚧🚧🚧 Consider this repository as highly experimental 🚧🚧🚧
+
 ## Features
 
 - Query the Stacks blockchain using a GraphQL API.
