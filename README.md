@@ -102,7 +102,7 @@ Do you have an idea or want to contribute? Pull requests are very welcome!
 
 - No support for balances
 - Some tables are not tracked and exposed yet
-- No clean views to convert "bytea" to "hex" in the query response as well as the "where" arguments - Hasura does not support Materialized Views for relay https://github.com/hasura/graphql-engine/issues/7013
+- No clean views to convert "bytea" to "hex" in the query response as well as the "where" arguments - Hasura does not support Materialized Views for relay yet https://github.com/hasura/graphql-engine/issues/5044
 
 ## License
 
