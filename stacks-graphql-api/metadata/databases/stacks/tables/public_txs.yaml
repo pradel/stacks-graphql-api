@@ -1,6 +1,10 @@
 table:
   name: txs
   schema: public
+configuration:
+  custom_column_names: {}
+  custom_name: transactions
+  custom_root_fields: {}
 object_relationships:
 - name: block
   using:
