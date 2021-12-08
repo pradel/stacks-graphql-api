@@ -20,23 +20,48 @@ TODO.
 
 ### Queries
 
-Get the last 10 blocks mined with the number of transactions included in that block:
+Get the data of transaction `0x5cca607a5fa44855e2b56dd4fc41a53b871c1f75eecbf5e271c2d6439e32b745`:
 
 ```graphql
 {
-  blocks_connection(first: 10, order_by: { block_height: desc }) {
+  transactions_connection(
+    where: {
+      tx_id: {
+        _eq: "\\x5cca607a5fa44855e2b56dd4fc41a53b871c1f75eecbf5e271c2d6439e32b745"
+      }
+    }
+  ) {
     edges {
       node {
-        block_height
-        block_hash
-        burn_block_time
-        burn_block_hash
-        burn_block_height
-        # Number of transactions included in the block
-        transactions_aggregate {
-          aggregate {
-            count
-          }
+        id
+        sender_address
+        fee_rate
+        nonce
+        contract_call_contract_id
+        contract_call_function_name
+        contract_call_function_args
+        contract_call {
+          source_code
+          tx_id
+        }
+        block {
+          block_hash
+          block_height
+          burn_block_time
+          burn_block_hash
+          burn_block_height
+        }
+        ft_events {
+          asset_event_type_id
+          asset_identifier
+          sender
+          recipient
+        }
+        nft_events {
+          asset_event_type_id
+          asset_identifier
+          sender
+          recipient
         }
       }
     }
@@ -54,7 +79,11 @@ subscription {
     edges {
       node {
         block_height
+        block_hash
         burn_block_time
+        burn_block_hash
+        burn_block_height
+        # Number of transactions included in the block
         transactions_aggregate {
           aggregate {
             count
