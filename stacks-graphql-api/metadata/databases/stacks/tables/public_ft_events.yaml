@@ -1,3 +1,25 @@
 table:
   name: ft_events
   schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - event_index
+    - tx_id
+    - tx_index
+    - block_height
+    - index_block_hash
+    - parent_index_block_hash
+    - microblock_hash
+    - microblock_sequence
+    - microblock_canonical
+    - canonical
+    - asset_event_type_id
+    - asset_identifier
+    - amount
+    - sender
+    - recipient
+    filter: {}
+    limit: 100
+  role: user
