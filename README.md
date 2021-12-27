@@ -94,7 +94,7 @@ subscription {
 
 ## Deploying with docker-compose
 
-The `docker-compose.yml` file start a stacks node, the stacks API which is seeding Postgres, and the Hasura GraphQL API.
+The `docker-compose.yml` file start a stacks-blockchain node, the stacks-blockchain-api which is seeding a Postgres database, and the Hasura GraphQL API.
 
 On your server run:
 
