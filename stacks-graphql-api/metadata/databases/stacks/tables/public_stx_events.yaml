@@ -1,0 +1,34 @@
+table:
+  name: stx_events
+  schema: public
+object_relationships:
+- name: block
+  using:
+    manual_configuration:
+      column_mapping:
+        block_height: block_height
+      insertion_order: null
+      remote_table:
+        name: blocks
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - event_index
+    - tx_id
+    - tx_index
+    - block_height
+    - index_block_hash
+    - parent_index_block_hash
+    - microblock_hash
+    - microblock_sequence
+    - microblock_canonical
+    - canonical
+    - asset_event_type_id
+    - amount
+    - sender
+    - recipient
+    filter: {}
+    limit: 100
+  role: user
