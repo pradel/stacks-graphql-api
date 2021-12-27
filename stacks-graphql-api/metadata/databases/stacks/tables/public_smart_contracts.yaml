@@ -1,6 +1,16 @@
 table:
   name: smart_contracts
   schema: public
+object_relationships:
+- name: block
+  using:
+    manual_configuration:
+      column_mapping:
+        index_block_hash: index_block_hash
+      insertion_order: null
+      remote_table:
+        name: blocks
+        schema: public
 select_permissions:
 - permission:
     columns:
