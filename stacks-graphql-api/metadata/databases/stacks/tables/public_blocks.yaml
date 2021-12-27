@@ -38,7 +38,7 @@ array_relationships:
       remote_table:
         name: stx_events
         schema: public
-- name: txs
+- name: transactions
   using:
     manual_configuration:
       column_mapping:
