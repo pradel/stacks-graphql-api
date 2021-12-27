@@ -38,6 +38,15 @@ array_relationships:
       remote_table:
         name: stx_events
         schema: public
+- name: txs
+  using:
+    manual_configuration:
+      column_mapping:
+        index_block_hash: index_block_hash
+      insertion_order: null
+      remote_table:
+        name: txs
+        schema: public
 select_permissions:
 - permission:
     columns:
