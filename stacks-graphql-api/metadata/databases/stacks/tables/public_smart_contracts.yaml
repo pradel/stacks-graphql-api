@@ -11,6 +11,15 @@ object_relationships:
       remote_table:
         name: blocks
         schema: public
+- name: transaction
+  using:
+    manual_configuration:
+      column_mapping:
+        tx_id: tx_id
+      insertion_order: null
+      remote_table:
+        name: txs
+        schema: public
 select_permissions:
 - permission:
     columns:
