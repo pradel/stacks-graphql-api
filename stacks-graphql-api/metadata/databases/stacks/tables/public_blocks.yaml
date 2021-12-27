@@ -2,11 +2,29 @@ table:
   name: blocks
   schema: public
 array_relationships:
-- name: transactions
+- name: ft_events
   using:
     manual_configuration:
       column_mapping:
-        block_height: block_height
+        index_block_hash: index_block_hash
+      insertion_order: null
+      remote_table:
+        name: ft_events
+        schema: public
+- name: nft_events
+  using:
+    manual_configuration:
+      column_mapping:
+        index_block_hash: index_block_hash
+      insertion_order: null
+      remote_table:
+        name: nft_events
+        schema: public
+- name: stx_events
+  using:
+    manual_configuration:
+      column_mapping:
+        index_block_hash: index_block_hash
       insertion_order: null
       remote_table:
         name: stx_events
