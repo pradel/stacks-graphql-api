@@ -20,6 +20,15 @@ array_relationships:
       remote_table:
         name: nft_events
         schema: public
+- name: smart_contracts
+  using:
+    manual_configuration:
+      column_mapping:
+        index_block_hash: index_block_hash
+      insertion_order: null
+      remote_table:
+        name: smart_contracts
+        schema: public
 - name: stx_events
   using:
     manual_configuration:
