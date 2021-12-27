@@ -54,7 +54,7 @@ services:
       - stacks-blockchain
 
   graphql-engine:
-    image: hasura/graphql-engine:v2.0.10
+    image: hasura/graphql-engine:v2.1.1
     ports:
       - "8080:8080"
     networks:
