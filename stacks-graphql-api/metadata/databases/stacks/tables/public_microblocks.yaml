@@ -1,3 +1,25 @@
 table:
   name: microblocks
   schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - canonical
+    - microblock_canonical
+    - block_hash
+    - index_block_hash
+    - microblock_hash
+    - microblock_parent_hash
+    - parent_block_hash
+    - parent_burn_block_hash
+    - parent_index_block_hash
+    - block_height
+    - microblock_sequence
+    - parent_block_height
+    - parent_burn_block_height
+    - parent_burn_block_time
+    - receive_timestamp
+    filter: {}
+    limit: 100
+  role: user
