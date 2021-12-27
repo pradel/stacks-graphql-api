@@ -14,10 +14,6 @@
 - Realtime updates via GraphQL subscriptions.
 - Blazing fast, using [Hasura](https://github.com/hasura/graphql-engine).
 
-## Installation
-
-TODO.
-
 ## Usage example
 
 ### Queries
@@ -95,6 +91,25 @@ subscription {
     }
   }
 ```
+
+## Deploying with docker-compose
+
+The `docker-compose.yml` file start a stacks-blockchain node, the stacks-blockchain-api which is seeding a Postgres database, and the Hasura GraphQL API.
+
+On your server run:
+
+```sh
+docker-compose up -d
+```
+
+Then to apply the metadata to the deployed Hasura instance, run:
+
+```sh
+cd stacks-graphql-api
+hasura metadata apply --endpoint https://my-endpoint --admin-secret "super-secret"
+```
+
+Finally to interact with the API, go to https://graphqlbin.com/v2/new (or any GraphiQL client) and use https://my-server-ip:8080/v1beta1/relay for the endpoint. On the right side, you will be able to browse the GraphQL schema docs.
 
 ## Contributing
 

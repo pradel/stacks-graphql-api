@@ -53,6 +53,23 @@ services:
     networks:
       - stacks-blockchain
 
+  graphql-engine:
+    image: hasura/graphql-engine:v2.1.1
+    ports:
+      - "8080:8080"
+    networks:
+      - stacks-blockchain
+    depends_on:
+      - "postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false"
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "user"
+      HASURA_GRAPHQL_ENABLE_TELEMETRY: "false"
+      # Change the value in production
+      HASURA_GRAPHQL_ADMIN_SECRET: "super-secret"
+
 volumes:
   db_data:
 
