@@ -1,0 +1,40 @@
+# fly.toml file generated for stacks-node on 2021-12-27T11:49:39-06:00
+
+app = "stacks-node"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+
+[mounts]
+  source="stacks_node_data"
+  destination="/tmp/stacks-blockchain-data"
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 20443
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
