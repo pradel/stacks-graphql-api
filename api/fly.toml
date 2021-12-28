@@ -1,0 +1,65 @@
+# fly.toml file generated for stacks-node-api on 2021-12-27T12:28:54-06:00
+
+app = "stacks-node-api"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  NODE_ENV = "production"
+  PG_DATABASE = "stacks_node"
+  PG_HOST = "stacks-blockchain-db.internal"
+  PG_PASSWORD = "9VvossYpxvlm8AF"
+  PG_PORT = 5432
+  PG_USER = "stacks_node"
+  STACKS_BLOCKCHAIN_API_DB = "pg"
+  STACKS_BLOCKCHAIN_API_HOST = "0.0.0.0"
+  STACKS_BLOCKCHAIN_API_PORT = 3999
+  STACKS_CHAIN_ID = "0x00000001"
+  STACKS_CORE_EVENT_HOST = "0.0.0.0"
+  STACKS_CORE_EVENT_PORT = 3700
+  STACKS_CORE_RPC_HOST = "stacks-node.internal"
+  STACKS_CORE_RPC_PORT = 80
+  V2_POX_MIN_AMOUNT_USTX = 90000000260
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 3999
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+
+[[services]]
+  http_checks = []
+  internal_port = 3700
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 10000
